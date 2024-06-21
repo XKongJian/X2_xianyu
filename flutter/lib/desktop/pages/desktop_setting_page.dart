@@ -1186,12 +1186,12 @@ class _Network extends StatefulWidget {
 class _NetworkState extends State<_Network> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
-  bool locked = bind.mainIsInstalled();
+  bool locked = true;
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    bool enabled = !locked;
+    bool enabled = false;
     final scrollController = ScrollController();
     return DesktopScrollWrapper(
         scrollController: scrollController,
@@ -1200,7 +1200,7 @@ class _NetworkState extends State<_Network> with AutomaticKeepAliveClientMixin {
             physics: DraggableNeverScrollableScrollPhysics(),
             children: [
               _lock(locked, 'Unlock Network Settings', () {
-                locked = false;
+                locked = true;
                 setState(() => {});
               }),
               AbsorbPointer(
