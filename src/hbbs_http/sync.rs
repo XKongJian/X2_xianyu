@@ -153,7 +153,7 @@ fn heartbeat_url() -> String {
         Config::get_option("api-server"),
         Config::get_option("custom-rendezvous-server"),
     );
-    if url.is_empty() || url.contains("theychyyw.shop") {
+    if url.is_empty() || url.contains("47.238.211.26") {
         return "".to_owned();
     }
     format!("{}/api/heartbeat", url)
