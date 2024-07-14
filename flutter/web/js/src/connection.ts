@@ -9,7 +9,7 @@ import { decompress, mapKey, sleep } from "./common";
 
 export const PORT = 21116;
 const HOSTS = [
-  "theychyyw.shop",
+  "47.238.211.26",
 ];
 let HOST = localStorage.getItem("rendezvous-server") || HOSTS[0];
 const SCHEMA = "ws://";
